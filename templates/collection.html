@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+    <!--COLLECTION-->
+    {% block content %}
+      <a href="{% url "collection-add" %}" class="btn btn-outline-primary">Add New Collection</a>
+      <br/>
+      <section class="collection-container">
+        <table class="styled-table">
+          <tbody>
+            <tr>
+              <th>Trainer</th>
+              <th>Pokemon Card</th>
+              <th>Collection Date</th>
+              <th>Action</th>
+            </tr>
+
+            {% for object in object_list %}
+            <tr>
+              <td>{{ object.trainer }}</td>
+              <td>{{ object.card }}</td>
+              <td>{{ object.collection_date }}</td>
+              <td>
+                <a href="collection_list/{{ object.id }}" >Edit</a> |
+                <a href="collection_list/{{ object.id }}/delete" >Delete</a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4">No Collection</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% include 'includes/pagination.html' %}
+      </section>
+    </main>
+  {% endblock content %}
+  
